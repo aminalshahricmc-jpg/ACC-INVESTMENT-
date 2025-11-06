@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdrawal - ACC INVESTMENT</title>
+  <style>
+    body {
+      background-color: #000814;
+      color: #d4af37;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #00ff88;
+      font-size: 35px;
+      margin-bottom: 30px;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      background-color: #001d3d;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #00ff88;
+    }
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      text-align: center;
+    }
+    button {
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #d4af37;
+      color: #000;
+    }
+  </style>
+  <script>
+    // Auto language detection for Poland
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+        .then(data => {
+          if (data.country_code === "PL") {
+            document.querySelector("h1").innerText = "Wypłata - ACC INWESTYCJA";
+            document.getElementById("accnum").placeholder = "Numer konta bankowego";
+            document.getElementById("accname").placeholder = "Imię i nazwisko posiadacza konta";
+            document.getElementById("currency").value = "PLN";
+            document.getElementById("withdrawBtn").innerText = "Wypłać";
+            document.getElementById("backBtn").innerText = "Powrót";
+          }
+        })
+        .catch(() => {});
+    });
+
+    function showFee() {
+      alert("Withdrawal fee of 500 PLN is required.");
+    }
+  </script>
+</head>
+<body>
+  <h1>Withdrawal - ACC INVESTMENT</h1>
+
+  <form onsubmit="event.preventDefault(); showFee();">
+    <input type="text" id="accnum" placeholder="Account Number" required><br>
+    <input type="text" id="accname" placeholder="Account Name" required><br>
+    <select id="bank" required>
+      <option value="">Select Bank</option>
+      <option>PKO Bank Polski</option>
+      <option>mBank</option>
+      <option>Santander Bank Polska</option>
+      <option>ING Bank Śląski</option>
+      <option>Bank Pekao S.A.</option>
+      <option>Alior Bank</option>
+      <option>Millennium Bank</option>
+      <option>BNP Paribas Bank Polska</option>
+      <option>Citi Handlowy</option>
+      <option>BOŚ Bank</option>
+      <option>Nest Bank</option>
+      <option>Getin Bank</option>
+      <option>Credit Agricole Bank Polska</option>
+      <option>Toyota Bank Polska</option>
+      <option>Bank Pocztowy</option>
+      <option>Volkswagen Bank Polska</option>
+      <option>VeloBank</option>
+      <option>Bank Spółdzielczy</option>
+      <option>Plus Bank</option>
+      <option>Bank Ochrony Środowiska</option>
+    </select><br>
+    <input type="text" id="currency" value="PLN" readonly><br>
+    <button type="submit" id="withdrawBtn">Withdraw</button>
+    <button type="button" id="backBtn" onclick="window.location.href='index.html'">Back</button>
+  </form>
+</body>
+</html>
